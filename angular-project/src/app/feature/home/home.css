@@ -1,0 +1,114 @@
+/* Основни настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Основен контейнер */
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    display: block;
+    width: 15%;
+    height: 100vh;
+    background-color: #111;
+    padding: 20px;
+    position: fixed;
+    border-right: 1px solid #333;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40%;
+
+
+}
+
+.sidebar nav a {
+
+    color: #ccc;
+    margin-bottom: 30px;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.sidebar nav a:hover {
+    color: #fff;
+}
+
+/* Feed */
+.feed {
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+}
+
+
+
+/* Post */
+.post {
+    background-color: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    color: white;
+    text-decoration: none;
+
+}
+
+.post-header {
+    padding: 10px;
+    border-bottom: 1px solid #222;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.post-header span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.post-header i {
+    font-size: 2em;
+    
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    display: block;
+    
+}
+
+.post-action {
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+.post-action:hover {
+    color: green;
+}
+
+.post-caption {
+    padding: 0 10px 10px;
+}
