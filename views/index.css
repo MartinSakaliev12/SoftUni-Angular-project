@@ -52,7 +52,7 @@ body {
 .feed {
     display: block;
     margin: 0 auto;
-    width: 50%;
+    width: 40%;
 }
 
 
@@ -63,7 +63,9 @@ body {
     border: 1px solid #222;
     border-radius: 8px;
     margin-bottom: 30px;
-    
+    color: white;
+    text-decoration: none;
+
 }
 
 .post-header {
@@ -72,12 +74,19 @@ body {
     font-weight: bold;
     margin: 0 auto;
 }
-.post-header i{
+
+.post-header i {
     font-size: 2em;
+
 }
+
 .post img {
     width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
     display: block;
+    
 }
 
 .post-action {
@@ -85,8 +94,8 @@ body {
     font-size: 1.5em;
 }
 
-.post-action:hover{
-    color:green;
+.post-action:hover {
+    color: green;
 }
 
 .post-caption {
