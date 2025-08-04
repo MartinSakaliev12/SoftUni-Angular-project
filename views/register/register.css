@@ -1,0 +1,136 @@
+/* Основни настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    
+}
+
+/* Основен контейнер */
+.container {
+    display: flex;
+    gap:10em;
+}
+
+/* Sidebar */
+.sidebar {
+    display: block;
+    width: 15%;
+    height: 100vh;
+    background-color: #111;
+    padding: 20px;
+    position: fixed;
+    border-right: 1px solid grey;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40%;
+
+
+}
+
+.sidebar nav a {
+
+    color: #ccc;
+    margin-bottom: 30px;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.sidebar nav a:hover {
+    color: #fff;
+}
+
+/* .register-container {
+  background-color: #111;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  width: 150%;
+  max-width: 350px;
+  right: 50%;
+  margin-left: 250%;
+  margin-top: 80%;
+} */
+.register-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #111;
+  padding: 40px 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+}
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+input {
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+button {
+  background-color: #3897f0;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #2e80d9;
+}
+
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.login-link {
+  text-align: center;
+  display: block;
+  color: #3897f0;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
