@@ -72,6 +72,16 @@ export class Register {
     return ""
     //todo errors messages and add returning type of get
   }
+
+  get emailErrorMessage(){
+    if(this.email?.dirty || this.email?.errors?.['pattern']){
+      return "Invalid email!"
+    }
+    if(this.email?.touched){
+      return "Email is reqired!"
+    }
+    return "";
+  }
   register(): void {
     console.log(this.registerForm.get('passwords'))
   }

@@ -7,7 +7,7 @@
             }
             <input type="email" placeholder="Email" formControlName="email" id="email" >
             @if(isEmailInvalid){
-                <p>Error message</p>
+                <p>{{emailErrorMessage}}</p>
             }
             <div formGroupName="passwords">
                 <input type="password" placeholder="Password" formControlName="password" id="password" >
