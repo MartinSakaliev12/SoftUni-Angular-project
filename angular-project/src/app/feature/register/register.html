@@ -3,7 +3,7 @@
         <form class="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
             <input type="text" placeholder="Username" formControlName="username" id="username" >
             @if(isUsernameInvalid){
-                <p>Error</p>
+                <p>{{usernameErrorMessage}}</p>
             }
             <input type="email" placeholder="Email" formControlName="email" id="email" >
             @if(isEmailInvalid){
