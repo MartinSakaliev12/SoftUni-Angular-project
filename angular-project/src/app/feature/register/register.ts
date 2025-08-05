@@ -23,6 +23,15 @@ export class Register {
       biography:[''] 
     })
   }
+  get username (){
+    return this.registerForm.get('username')
+  }
+  get email (){
+    return this.registerForm.get('email')
+  }
+  get passwords (){
+    return this.registerForm.get('passwords') as FormGroup
+  }
 
   register():void{
     console.log(this.registerForm.get('passwords'))
