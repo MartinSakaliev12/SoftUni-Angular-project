@@ -1,11 +1,15 @@
-
 <main>
     <div class="register-container">
-        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="register()" >
-            <input type="text" placeholder="Username" formControlName="username" id="username" required>
-            <input type="email" placeholder="Email" formControlName="email" id="email" required>
-            <input type="password" placeholder="Password" formControlName="password" id="password" required>
-            <input type="password" placeholder="Confirm password" formControlName="rePassword" id="rePassword" required>
+        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
+            <input type="text" placeholder="Username" formControlName="username" id="username" >
+            @if(isUsernameInvalid){
+                <p>Error</p>
+            }
+            <input type="email" placeholder="Email" formControlName="email" id="email" >
+            <div formGroupName="passwords">
+                <input type="password" placeholder="Password" formControlName="password" id="password" >
+                <input type="password" placeholder="Confirm password" formControlName="rePassword" id="rePassword">
+            </div>
             <input type="text" placeholder="Add something for you!" formControlName="biography" id="biography">
             <button type="submit">Register</button>
 
