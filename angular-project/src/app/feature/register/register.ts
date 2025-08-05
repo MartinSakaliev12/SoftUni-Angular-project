@@ -32,7 +32,38 @@ export class Register {
   get passwords (){
     return this.registerForm.get('passwords') as FormGroup
   }
+  
+  get isUsernameInvalid(){
+    if((this.username?.touched || this.username?.dirty) && (this.username.invalid || this.username.errors?.['minlength'])){
+      return true
+    }
+    return false
+  }
 
+  get isEmailInvalid (){
+    if((this.email?.touched || this.email?.dirty) && (this.email.invalid || this.email.errors?.['pattern'])){
+      return true
+    }
+    return false
+  }
+
+  get isPasswordInvalid (){
+    if((this.passwords.get('password')?.touched || this.passwords.get('password')?.dirty) && (this.passwords.get('password')?.invalid || this.passwords.get('passwords')?.errors?.['minlength'])){
+      return true
+    }
+    return false
+  }
+
+  get isRePasswordInvalid(){
+    if(this.passwords.errors?.['passwordsMissmatch']){
+      return true
+    }
+    return false
+  }
+
+  // get usernameErrorMessage(){
+  //   //todo errors messages and add returning type of get
+  // }
   register():void{
     console.log(this.registerForm.get('passwords'))
   }

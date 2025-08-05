@@ -6,9 +6,18 @@
                 <p>Error</p>
             }
             <input type="email" placeholder="Email" formControlName="email" id="email" >
+            @if(isEmailInvalid){
+                <p>Error message</p>
+            }
             <div formGroupName="passwords">
                 <input type="password" placeholder="Password" formControlName="password" id="password" >
+                @if(isPasswordInvalid){
+                    <p>Error</p>
+                }
                 <input type="password" placeholder="Confirm password" formControlName="rePassword" id="rePassword">
+                @if(isRePasswordInvalid){
+                    <p>Erorr</p>
+                }
             </div>
             <input type="text" placeholder="Add something for you!" formControlName="biography" id="biography">
             <button type="submit">Register</button>
