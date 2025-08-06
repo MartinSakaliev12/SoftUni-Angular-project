@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class Register {
   formBuilder = inject(FormBuilder)
   registerForm: FormGroup;
   private authService = inject(AuthService)
+  private router = inject(Router)
   constructor() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -112,7 +113,14 @@ export class Register {
       this.email?.value,
       this.username?.value,
       this.passwords.get('password')?.value
-    ).subscribe(res => console.log(res))
+    ).subscribe({
+      next: ()=>{
+        this.router.navigate(['/home'])
+      },
+      error: (err) =>{
+        console.log(err)
+      }
+    })
   }
 
   isPassowrdsMatch(passwords: FormGroup) {
