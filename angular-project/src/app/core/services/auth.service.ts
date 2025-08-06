@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, OnInit, signal } from "@angular/core";
 import { map, Observable, tap } from "rxjs";
 import { User } from "../../shared/models/user.model";
+import { json } from "stream/consumers";
 
 @Injectable({
     providedIn:'root'
@@ -14,7 +15,7 @@ export class AuthService {
     private _user = signal<User|null>(null)
 
     constructor(){
-        const localstorageUser = localStorage.getItem('user')
+        const localstorageUser = localStorage.getItem('currentUser')
         if(localstorageUser){
             this._user.set(JSON.parse(localstorageUser))
             this._isLoggedIn.set(true)
@@ -22,9 +23,10 @@ export class AuthService {
     }
 
     register(biography:string,email:string,username:string,password:string):Observable<User>{
-        return this.httpClient.post<User>(`${this.url}register`,{biography,email,username,password},{withCredentials:true}).pipe(
+        return this.httpClient.post<User>(`${this.url}/register`,{biography,email,username,password},{withCredentials:true}).pipe(
             tap(apiUser => {this._user.set(apiUser);
                             this._isLoggedIn.set(true)
+                            localStorage.setItem('currentUser',JSON.stringify(this._user()))
                         })
         )
         

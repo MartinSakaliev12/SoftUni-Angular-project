@@ -1,17 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [RouterModule, ReactiveFormsModule,],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
 export class Register {
   formBuilder = inject(FormBuilder)
   registerForm: FormGroup;
-
+  private authService = inject(AuthService)
   constructor() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -32,7 +33,9 @@ export class Register {
   get passwords():FormGroup {
     return this.registerForm.get('passwords') as FormGroup
   }
-
+  get biography (){
+    return this.registerForm.get('biography')
+  }
   get isUsernameInvalid():boolean {
     if ((this.username?.touched || this.username?.dirty) && (this.username.invalid || this.username.errors?.['minlength'])) {
       return true
@@ -103,9 +106,14 @@ export class Register {
     return ""
   }
   register(): void {
-    console.log(this.registerForm.get('passwords'))
+    this.authService.register(
+      this.biography?.value,
+      this.email?.value,
+      this.username?.value,
+      this.passwords.get('password')?.value
+    ).subscribe(res => console.log(res))
   }
-  
+
   isPassowrdsMatch(passwords: FormGroup) {
     const password = passwords.get('password')
     const rePasssword = passwords.get('rePassword')
