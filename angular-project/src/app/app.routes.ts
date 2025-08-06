@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { App } from './app';
 import { Home } from './feature/home/home';
-import { Register } from './feature/register/register';
-import { Login } from './feature/login/login';
+import { Register } from './feature/auth/register/register';
+import { Login } from './feature/auth/login/login';
 
 export const routes: Routes = [
     {
