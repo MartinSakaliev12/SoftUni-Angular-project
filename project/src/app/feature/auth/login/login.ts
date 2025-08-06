@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { RouterModule } from '@angular/router';
 })
 export class Login {
   loginForm: FormGroup;
-
+  private authService = inject(AuthService)
+  private router = inject(Router)
   constructor(private formBuidler: FormBuilder){
     this.loginForm = this.formBuidler.group({
       email:['',[Validators.required]],
@@ -32,6 +34,17 @@ export class Login {
   }
 
   login(){
-    console.log(this.loginForm.valid)
+    const email = this.loginForm.get('email')?.value
+    const password = this.loginForm.get('password')?.value
+    this.authService.login(email,password).subscribe({
+      next: ()=>{
+        this.router.navigate(['/home'])
+      },
+      error: (err) =>{
+        console.log(err)
+      }
+    })
   }
 }
+
+
