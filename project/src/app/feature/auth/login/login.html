@@ -4,10 +4,12 @@
 
             <input type="email" placeholder="Email" formControlName="email">
             @if(isEmailInvalid){
-                <p>Error</p>
+                <p>Email is reqired!</p>
             }
             <input type="password" placeholder="Password" formControlName="password">
-
+            @if(isPasswordInvalid){
+                <p>Password is reqired!</p>
+            }
 
             <button type="submit">Login</button>
 

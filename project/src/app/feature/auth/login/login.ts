@@ -24,4 +24,11 @@ export class Login {
     return false
   }
 
+  get isPasswordInvalid (){
+    if(this.loginForm.get('password')?.touched && this.loginForm.get('password')?.invalid){
+      return true
+    }
+    return false
+  }
+
 }
