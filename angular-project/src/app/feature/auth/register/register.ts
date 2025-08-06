@@ -105,7 +105,7 @@ export class Register {
   register(): void {
     console.log(this.registerForm.get('passwords'))
   }
-
+  
   isPassowrdsMatch(passwords: FormGroup) {
     const password = passwords.get('password')
     const rePasssword = passwords.get('rePassword')
