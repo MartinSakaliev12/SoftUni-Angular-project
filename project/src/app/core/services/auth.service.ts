@@ -35,5 +35,21 @@ export class AuthService {
         
     }
 
+    login(email:string,password:string):Observable<User>{
+        return this.httpClient.post<User>(`${this.url}/login`,{email,password}).pipe(
+            tap(apiUser => {
+                            this._user.set(apiUser);
+                            this._isLoggedIn.set(true);
+                            localStorage.setItem('currentUser',JSON.stringify(this._user()))
+                }
+            )
+        )
+    }
+
+    logout():void{
+        localStorage.removeItem('currentUser')
+        this._user.set(null)
+        this._isLoggedIn.set(false)
+    }
     
 }
