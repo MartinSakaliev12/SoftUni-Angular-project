@@ -79,3 +79,9 @@ button:hover {
 .login-link:hover {
   text-decoration: underline;
 }
+.error{
+  color:red;
+  font-size:14px;
+  font-style: italic;
+  margin-bottom: 15px;
+}

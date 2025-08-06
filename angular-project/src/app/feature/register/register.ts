@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -23,46 +23,46 @@ export class Register {
       biography: ['']
     })
   }
-  get username() {
+  get username():AbstractControl | null {
     return this.registerForm.get('username')
   }
-  get email() {
+  get email():AbstractControl | null {
     return this.registerForm.get('email')
   }
-  get passwords() {
+  get passwords():FormGroup {
     return this.registerForm.get('passwords') as FormGroup
   }
 
-  get isUsernameInvalid() {
+  get isUsernameInvalid():boolean {
     if ((this.username?.touched || this.username?.dirty) && (this.username.invalid || this.username.errors?.['minlength'])) {
       return true
     }
     return false
   }
 
-  get isEmailInvalid() {
+  get isEmailInvalid():boolean  {
     if ((this.email?.touched || this.email?.dirty) && (this.email.invalid || this.email.errors?.['pattern'])) {
       return true
     }
     return false
   }
 
-  get isPasswordInvalid() {
+  get isPasswordInvalid():boolean  {
     if ((this.passwords.get('password')?.touched || this.passwords.get('password')?.dirty) && (this.passwords.get('password')?.invalid || this.passwords.get('passwords')?.errors?.['minlength'])) {
       return true
     }
     return false
   }
 
-  get isRePasswordInvalid() {
+  get isRePasswordInvalid():boolean  {
     if (this.passwords.errors?.['passwordsMissmatch']) {
       return true
     }
     return false
   }
 
-  get usernameErrorMessage() {
-    if (this.username?.dirty || this.username?.errors?.['minlength']) {
+  get usernameErrorMessage():string {
+    if (this.username?.dirty && this.username?.errors?.['minlength']) {
       return "Username have to be at least 4 characters."
     }
     if (this.username?.touched) {
@@ -70,17 +70,37 @@ export class Register {
     }
 
     return ""
-    //todo errors messages and add returning type of get
+    
   }
 
-  get emailErrorMessage(){
-    if(this.email?.dirty || this.email?.errors?.['pattern']){
+  get emailErrorMessage():string{
+    if(this.email?.dirty && this.email?.errors?.['pattern']){
       return "Invalid email!"
     }
     if(this.email?.touched){
       return "Email is reqired!"
     }
     return "";
+  }
+
+  get passwordErrorMessage ():string{
+    if(this.passwords.get('password')?.dirty && this.passwords.get('password')?.errors?.['minlength']){
+      return "Your password have to be at least 6 characters!"
+    }
+    if(this.passwords.get('password')?.touched){
+      return "Password is reqired!"
+    }
+    return "";
+  }
+
+  get rePasswordErrorMessage():string{
+    if(this.passwords.get('rePassword')?.dirty && this.passwords?.errors?.['passwordsMissmatch']){
+      return "Type your password to confirm it!"
+    }
+    if(this.passwords.get('rePassword')?.touched){
+      return "Confirm passwords is reqired!"
+    }
+    return ""
   }
   register(): void {
     console.log(this.registerForm.get('passwords'))

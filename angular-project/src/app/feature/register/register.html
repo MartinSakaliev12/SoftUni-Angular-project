@@ -3,20 +3,20 @@
         <form class="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
             <input type="text" placeholder="Username" formControlName="username" id="username" >
             @if(isUsernameInvalid){
-                <p>{{usernameErrorMessage}}</p>
+                <p class="error"> {{usernameErrorMessage}}</p>
             }
             <input type="email" placeholder="Email" formControlName="email" id="email" >
             @if(isEmailInvalid){
-                <p>{{emailErrorMessage}}</p>
+                <p class="error"> {{emailErrorMessage}}</p>
             }
             <div formGroupName="passwords">
                 <input type="password" placeholder="Password" formControlName="password" id="password" >
                 @if(isPasswordInvalid){
-                    <p>Error</p>
+                    <p class="error"> {{passwordErrorMessage}}</p>
                 }
                 <input type="password" placeholder="Confirm password" formControlName="rePassword" id="rePassword">
                 @if(isRePasswordInvalid){
-                    <p>Erorr</p>
+                    <p class="error"> {{rePasswordErrorMessage}}</p>
                 }
             </div>
             <input type="text" placeholder="Add something for you!" formControlName="biography" id="biography">
