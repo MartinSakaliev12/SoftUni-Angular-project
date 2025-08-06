@@ -60,7 +60,9 @@ button {
 button:hover {
   background-color: #2e80d9;
 }
-
+button:disabled{
+  background-color: #666;
+}
 .divider {
   text-align: center;
   margin: 20px 0;
@@ -78,4 +80,10 @@ button:hover {
 
 .login-link:hover {
   text-decoration: underline;
+}
+.error{
+  color:red;
+  font-size:14px;
+  font-style: italic;
+  margin-bottom: 15px;
 }

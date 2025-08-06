@@ -1,17 +1,17 @@
 <main>
     <div class="register-container">
-        <form class="register-form" [formGroup]="loginForm">
+        <form class="register-form" [formGroup]="loginForm" (ngSubmit)="login()">
 
             <input type="email" placeholder="Email" formControlName="email">
             @if(isEmailInvalid){
-                <p>Email is reqired!</p>
+                <p class="error">Email is reqired!</p>
             }
             <input type="password" placeholder="Password" formControlName="password">
             @if(isPasswordInvalid){
-                <p>Password is reqired!</p>
+                <p class="error">Password is reqired!</p>
             }
 
-            <button type="submit">Login</button>
+            <button type="submit" [disabled]="loginForm.invalid">Login</button>
 
             <div class="divider">Or</div>
 

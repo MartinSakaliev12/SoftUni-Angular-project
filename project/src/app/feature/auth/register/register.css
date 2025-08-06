@@ -60,7 +60,9 @@ button {
 button:hover {
   background-color: #2e80d9;
 }
-
+button:disabled{
+  background-color: #666;
+}
 .divider {
   text-align: center;
   margin: 20px 0;

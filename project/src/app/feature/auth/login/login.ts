@@ -31,4 +31,7 @@ export class Login {
     return false
   }
 
+  login(){
+    console.log(this.loginForm.valid)
+  }
 }

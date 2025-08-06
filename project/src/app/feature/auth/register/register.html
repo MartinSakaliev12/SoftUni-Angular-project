@@ -20,7 +20,7 @@
                 }
             </div>
             <input type="text" placeholder="Add something for you!" formControlName="biography" id="biography">
-            <button type="submit">Register</button>
+            <button type="submit" [disabled]="registerForm.invalid">Register</button>
 
             <div class="divider">Or</div>
 
