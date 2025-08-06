@@ -1,11 +1,12 @@
 <main>
     <div class="register-container">
-        <form class="register-form">
+        <form class="register-form" [formGroup]="loginForm">
 
-
-
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
+            <input type="email" placeholder="Email" formControlName="email">
+            @if(isEmailInvalid){
+                <p>Error</p>
+            }
+            <input type="password" placeholder="Password" formControlName="password">
 
 
             <button type="submit">Login</button>

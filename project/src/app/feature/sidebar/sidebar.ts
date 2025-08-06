@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
@@ -10,5 +10,5 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class Sidebar {
   private authService = inject(AuthService)
-  isLogged = this.authService.isLoggedIn;
+  isLogged:Signal<boolean> = this.authService.isLoggedIn;
 }

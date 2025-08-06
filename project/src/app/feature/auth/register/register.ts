@@ -10,6 +10,7 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './register.css'
 })
 export class Register {
+  //TODO ADD FORM VALID TO CANNOT SUBMIT WHILE FORM GET VALID
   formBuilder = inject(FormBuilder)
   registerForm: FormGroup;
   private authService = inject(AuthService)
