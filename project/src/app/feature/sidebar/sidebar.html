@@ -2,9 +2,10 @@
 <aside class="sidebar">
     <nav>
         <a routerLink="home"><i class="fa-solid fa-house-user"></i> Home</a>
-        <a href="#"><i class="fa-solid fa-plus"></i> Add</a>
+        
         
         @if (isLogged()) {
+            <a routerLink="createPost"><i class="fa-solid fa-plus"></i> Add</a>
             <a href="#"><i class="fa-solid fa-circle-user"></i> username</a>
             <button (click)="logout()"><i class="fa-solid fa-door-open"></i> Log out</button>
         }@else {
