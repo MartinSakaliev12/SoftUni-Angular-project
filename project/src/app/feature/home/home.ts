@@ -4,11 +4,12 @@ import { Post } from '../../shared/models/post.model';
 import {  CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
+import { SinglePost } from '../single-post/single-post';
 
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule,MatIconModule],
+  imports: [CommonModule,SinglePost],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
