@@ -3,6 +3,7 @@ import { App } from './app';
 import { Home } from './feature/home/home';
 import { Register } from './feature/auth/register/register';
 import { Login } from './feature/auth/login/login';
+import { Create } from './feature/create/create';
 
 export const routes: Routes = [
     {
@@ -22,5 +23,9 @@ export const routes: Routes = [
     {
         path:'login',
         component:Login
+    },
+    {
+        path:'createPost',
+        component:Create
     }
 ];
