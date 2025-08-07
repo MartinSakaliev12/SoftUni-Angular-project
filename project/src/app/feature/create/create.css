@@ -45,3 +45,9 @@
 .upload-form button:hover {
   background-color: #2b77c2;
 }
+.error{
+  color:red;
+  font-size:14px;
+  font-style: italic;
+  margin-bottom: 15px;
+}
