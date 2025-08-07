@@ -3,9 +3,10 @@
     <nav>
         <a routerLink="home"><i class="fa-solid fa-house-user"></i> Home</a>
         <a href="#"><i class="fa-solid fa-plus"></i> Add</a>
-        <a href="#"><i class="fa-solid fa-circle-user"></i> username</a>
+        
         @if (isLogged()) {
-            <a href="#"><i class="fa-solid fa-door-open"></i> Log out</a>
+            <a href="#"><i class="fa-solid fa-circle-user"></i> username</a>
+            <button (click)="logout()"><i class="fa-solid fa-door-open"></i> Log out</button>
         }@else {
             <a routerLink="register"><i class="fa-solid fa-clipboard-list"></i> Register</a>
             <a routerLink="login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
