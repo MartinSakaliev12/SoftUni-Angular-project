@@ -1,7 +1,8 @@
 <main>
+    
     <div class="details-container">
         <div class="post-image">
-            <img src="https://bmwtuning.co/wp-content/uploads/2022/11/e39.webp" alt="Post image">
+            <img src="{{(post$ | async)?.imageUrl}}" alt="Post image">
         </div>
 
         <div class="post-info">
@@ -9,11 +10,10 @@
                 <div class="post-action">
                     <i class="fa-solid fa-heart"></i>
                 </div>
-                <h2 class="post-title">Post Title</h2>
+                <h2 class="post-title">{{(post$ | async)?.title}}</h2>
             </div>
             <p class="post-description">
-                This is the description of the post. Here you can write longer text or captions, just like Instagram
-                does.
+                {{(post$ | async)?.description}}
             </p>
             <p class="post-author">Posted by <strong>user123</strong> 7 weeks ago</p>
         </div>

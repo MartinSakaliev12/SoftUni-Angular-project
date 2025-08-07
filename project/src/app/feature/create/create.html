@@ -1,7 +1,7 @@
 <main>
     <div class="create">
 
-        <form class="upload-form" [formGroup]="createForm" >
+        <form class="upload-form" [formGroup]="createForm" (ngSubmit)="create()">
             <h2>Add post</h2>
 
             <label for="title">Title</label>
@@ -17,7 +17,7 @@
             <label for="imageUrl">Image URL</label>
             <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg"  formControlName="imageUrl"/>
 
-            <button type="submit">Add</button>
+            <button type="submit" [disabled]="createForm.invalid">Add</button>
         </form>
     </div>
 </main>

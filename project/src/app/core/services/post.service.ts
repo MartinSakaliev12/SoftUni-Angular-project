@@ -17,8 +17,10 @@ export class PostService {
     getPosts():Observable<Post[]>{
         return this.httpClient.get<Post[]>(this.url)
     }
-    getDetailsPost(postId:string):Observable<Post>{
+    getDetailsPost(postId:string|null):Observable<Post>{
         return this.httpClient.get<Post>(`${this.url}/${postId}`)
     }
-
+    createPost(title:string, imageUrl:string, description:string){
+        return this.httpClient.post<Post>(`${this.url}`, {title,imageUrl,description},{withCredentials:true})
+    }
 }

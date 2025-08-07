@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PostService } from '../../core/services/post.service';
+import { RouteConfigLoadEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -9,6 +11,8 @@ import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validator
 })
 export class Create {
   createForm:FormGroup;
+  private postService = inject(PostService)
+  private router = inject(Router)
 
   constructor(private formBuilder: FormBuilder){
     this.createForm = this.formBuilder.group({
@@ -56,5 +60,17 @@ export class Create {
     }
     
     return ""
+  }
+
+  create(){
+    this.postService.createPost(
+      this.title?.value,
+      this.imageUrl?.value,
+      this.description?.value
+    ).subscribe({
+      next:()=>{
+        this.router.navigate(['/home'])
+      },
+    })
   }
 }
