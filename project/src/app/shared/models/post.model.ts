@@ -3,6 +3,5 @@ export interface Post{
     title:string,
     imageUrl:string,
     description:string,
-    created_at:Date,
-    likes:string[]
+
 }

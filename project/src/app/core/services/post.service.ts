@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 @Injectable({
     providedIn:'root'
 })
-export class postService {
+export class PostService {
     
     private url = "http://localhost:3000/api/articles"
 
@@ -20,5 +20,5 @@ export class postService {
     getDetailsPost(postId:string):Observable<Post>{
         return this.httpClient.get<Post>(`${this.url}/${postId}`)
     }
-    
+
 }
