@@ -71,7 +71,7 @@ export class Register {
   }
 
   get isImageUrlInvalid():boolean{
-    if(this.imageUrl?.errors?.['patter']){
+    if(this.imageUrl?.errors?.['pattern']){
       return true
     }
     return false
@@ -129,7 +129,8 @@ export class Register {
       this.biography?.value,
       this.email?.value,
       this.username?.value,
-      this.passwords.get('password')?.value
+      this.passwords.get('password')?.value,
+      this.imageUrl?.value
     ).subscribe({
       next: ()=>{
         this.router.navigate(['/home'])

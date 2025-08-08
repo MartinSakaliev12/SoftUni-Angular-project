@@ -2,9 +2,9 @@
 
     <div class="post">
         <div class="post-header">
-            <span><i class="fa-solid fa-circle-user"></i> user123</span>
+            <span><img src="{{post?.userId?.imageUrl}}" class="profile-pic" alt=""> {{post?.userId?.username}}</span>
         </div>
-        <img src="{{post?.imageUrl}}" alt="Image url">
+        <img src="{{post?.imageUrl}}" class="post-pic" alt="Image url">
         <div class="post-action">
             <i class="fa-solid fa-heart"></i>
         </div>
