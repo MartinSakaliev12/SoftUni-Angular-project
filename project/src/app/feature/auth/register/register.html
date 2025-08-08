@@ -19,6 +19,10 @@
                     <p class="error"> {{rePasswordErrorMessage}}</p>
                 }
             </div>
+            <input type="text" placeholder="imageUrl" formControlName="imageUrl" id="imageUrl" >
+            @if(isImageUrlInvalid){
+                <p class="error">{{imageUrlErrorMessage}}</p>
+            }
             <input type="text" placeholder="Add something for you!" formControlName="biography" id="biography">
             <button type="submit" [disabled]="registerForm.invalid">Register</button>
 

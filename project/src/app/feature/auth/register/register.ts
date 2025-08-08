@@ -23,6 +23,7 @@ export class Register {
         password: ['', [Validators.required, Validators.minLength(6)]],
         rePassword: ['', [Validators.required]],
       }, { validators: this.isPassowrdsMatch }),
+      imageUrl:['',[Validators.pattern(/https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|svg|webp)(\?.*)?$/)]],
       biography: ['']
     })
   }
@@ -35,7 +36,10 @@ export class Register {
   get passwords():FormGroup {
     return this.registerForm.get('passwords') as FormGroup
   }
-  get biography (){
+  get imageUrl():AbstractControl | null{
+    return this.registerForm.get('imageUrl')
+  }
+  get biography ():AbstractControl | null{
     return this.registerForm.get('biography')
   }
   get isUsernameInvalid():boolean {
@@ -61,6 +65,13 @@ export class Register {
 
   get isRePasswordInvalid():boolean  {
     if (this.passwords.errors?.['passwordsMissmatch']) {
+      return true
+    }
+    return false
+  }
+
+  get isImageUrlInvalid():boolean{
+    if(this.imageUrl?.errors?.['patter']){
       return true
     }
     return false
@@ -104,6 +115,12 @@ export class Register {
     }
     if(this.passwords.get('rePassword')?.touched){
       return "Confirm passwords is reqired!"
+    }
+    return ""
+  }
+  get imageUrlErrorMessage():string{
+    if(this.imageUrl?.errors?.['pattern']){
+      return "Incorrect image url!"
     }
     return ""
   }

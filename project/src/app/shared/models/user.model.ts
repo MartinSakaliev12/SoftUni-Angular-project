@@ -3,5 +3,5 @@ export interface User{
     username:string,
     email:string,
     biography:string,
-
+    imageUrl:string
 }
