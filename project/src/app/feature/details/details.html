@@ -1,21 +1,49 @@
 <main>
-    
-    <div class="details-container">
-        <div class="post-image">
-            <img src="{{(post$ | async)?.imageUrl}}" alt="Post image">
-        </div>
+    @if(!editMode()){
 
-        <div class="post-info">
-            <div class="header-action">
-                <div class="post-action">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <h2 class="post-title">{{(post$ | async)?.title}}</h2>
+        <div class="details-container">
+            <div class="post-image">
+                <img src="{{(post$ | async)?.imageUrl}}" alt="Post image">
             </div>
-            <p class="post-description">
-                {{(post$ | async)?.description}}
-            </p>
-            <p class="post-author">Posted by <strong>user123</strong> 7 weeks ago</p>
+            
+            <div class="post-info">
+                <div class="header-action">
+                    <div class="post-action">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h2 class="post-title">{{(post$ | async)?.title}}</h2>
+                </div>
+                <p class="post-description">
+                    {{(post$ | async)?.description}}
+                </p>
+                <p class="post-author">Posted by <strong>{{(post$ | async)?.userId?.username}}</strong> 7 weeks ago (have to make a pipe)</p>
+            </div>
+            @if(authService.user()?._id === (post$ | async)?.userId?._id){
+                <button class="btn-edit-mode" (click)="editModeSwitch()">Eddit</button>
+            }
         </div>
-    </div>
+    }@else {
+        <form class="upload-form" [formGroup]="editForm" (ngSubmit)="edit()">
+            <h2>Edit post</h2>
+
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Type title" formControlName="title" />
+            @if(isTitleInvalid){
+                <p class="error">{{titleErrorMessage}}</p>
+            }
+            <label for="description">Descriprion</label>
+            <textarea id="description" name="description" rows="4" placeholder="Type discription..." formControlName="description"></textarea>
+            @if(isDescriptionInvalid){
+                <p class="error">{{descriptionErrorMessage}}</p>
+            }
+            <label for="imageUrl">Image URL</label>
+            <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg"  formControlName="imageUrl"/>
+
+            <button type="submit" [disabled]="editForm.invalid">Edit</button>
+            <button type="button" (click)="editModeSwitch()">cancel</button>
+        </form>
+        
+    }
+        
+    
 </main>

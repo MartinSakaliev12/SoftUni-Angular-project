@@ -62,7 +62,7 @@ export class Create {
     return ""
   }
 
-  create(){
+  create():void{
     this.postService.createPost(
       this.title?.value,
       this.imageUrl?.value,

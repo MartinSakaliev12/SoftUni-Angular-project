@@ -23,4 +23,7 @@ export class PostService {
     createPost(title:string, imageUrl:string, description:string){
         return this.httpClient.post<Post>(`${this.url}`, {title,imageUrl,description},{withCredentials:true})
     }
+    editPost(title:string,imageUrl:string,description:string,postId:string|null){
+        return this.httpClient.put<Post>(`${this.url}/${postId}/edit`,{title,imageUrl,description},{withCredentials:true})
+    }
 }

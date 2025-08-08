@@ -37,7 +37,9 @@ export class AuthService {
     }
 
     login(email: string, password: string): Observable<User> {
-        return this.httpClient.post<User>(`${this.url}/login`, { email, password }).pipe(
+        return this.httpClient.post<User>(`${this.url}/login`, { email, password },{
+            withCredentials: true,
+        }).pipe(
             tap(apiUser => {
                 this._user.set(apiUser);
                 this._isLoggedIn.set(true);
