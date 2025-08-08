@@ -96,6 +96,7 @@ export class Details implements OnInit{
     
   }
   edit():void{
+
     this.postService.editPost(
       this.title?.value,
       this.imageUrl?.value,
@@ -103,7 +104,8 @@ export class Details implements OnInit{
       this.route.snapshot.paramMap.get('postId')
     ).subscribe({
       next:()=>{
-        this.router.navigate(['/home'])
+        //this.router.navigate(['/home'])
+        this.editMode.set(false)
       }
     })
   }
