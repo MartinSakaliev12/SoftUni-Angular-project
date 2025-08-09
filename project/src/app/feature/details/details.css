@@ -34,6 +34,7 @@ main{
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 15px;
+  overflow-wrap: break-word;
 }
 
 .post-author {
@@ -44,10 +45,11 @@ main{
 .header-action{
     display: flex;
     
-    align-items: end;
+    align-items: center;
+    margin-bottom: 20px;
 }
 .post-action {
-    padding: 10px;
+    padding-right: 10px;
     font-size: 1.5em;
 }
 
@@ -115,4 +117,16 @@ main{
   font-size:14px;
   font-style: italic;
   margin-bottom: 15px;
+}
+a{
+  text-decoration: none;
+  color: white;
+  
+}
+a:hover{
+  color:red
+}
+
+.fa-heart{
+  font-size: 1.3em;
 }
