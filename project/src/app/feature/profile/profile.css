@@ -105,3 +105,7 @@ a{
     text-decoration: none;
     color:white
 }
+.posts-username-header{
+    margin-top: 15px;
+    text-align: center;
+}

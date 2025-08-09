@@ -17,6 +17,7 @@
             <p class="bio">{{(profile$|async)?.biography}}</p>
         </div>
     </header>
+    <h1 class="posts-username-header">{{(profile$|async)?.username}}'s posts</h1>
     <div class="posts-container">
         @for(post of (profile$|async)?.articles;track post._id){
 
