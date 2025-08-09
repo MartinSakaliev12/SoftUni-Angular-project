@@ -1,7 +1,8 @@
 .profile-container {
     max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
+    margin:  auto;
+    padding: 50px 20px;
+    
 }
 
 .profile-header {
@@ -108,4 +109,8 @@ a{
 .posts-username-header{
     margin-top: 15px;
     text-align: center;
+}
+.title-para{
+    padding: 20px;
+    overflow-wrap: break-word;
 }

@@ -1,14 +1,14 @@
-<a routerLink="/{{post?._id}}/details" class="post">
+<a class="post">
 
     <div class="post">
-        <div class="post-header">
-            <span><img src="{{post?.userId?.imageUrl}}" class="profile-pic" alt=""> {{post?.userId?.username}}</span>
+        <div class="post-header" >
+            <span ><img src="{{post?.userId?.imageUrl}}" class="profile-pic" routerLink="/{{post?.userId?._id}}/profile"> {{post?.userId?.username}}</span>
         </div>
         <img src="{{post?.imageUrl}}" class="post-pic" alt="Image url">
         <div class="post-action">
             <!-- <i class="fa-solid fa-heart"></i> -->
         </div>
-        <div class="post-caption">
+        <div class="post-caption" routerLink="/{{post?._id}}/details">
             <strong>{{post?.title}}</strong> Click to see more...
         </div>
     </div>
