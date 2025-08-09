@@ -40,3 +40,9 @@
 .sidebar nav a:hover {
     color: #fff;
 }
+
+.profilePic{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}

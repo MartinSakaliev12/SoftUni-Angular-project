@@ -6,7 +6,9 @@
         
         @if (isLogged()) {
             <a routerLink="createPost"><i class="fa-solid fa-plus"></i> Add</a>
-            <a href="#"><i class="fa-solid fa-circle-user"></i> username</a>
+            <a routerLink="{{authService.userId()}}/profile">
+                <img src="{{authService.user()?.imageUrl}}" class="profilePic">
+                {{authService.user()?.username}}</a>
             <button (click)="logout()"><i class="fa-solid fa-door-open"></i> Log out</button>
         }@else {
             <a routerLink="register"><i class="fa-solid fa-clipboard-list"></i> Register</a>
