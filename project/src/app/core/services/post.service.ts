@@ -29,4 +29,7 @@ export class PostService {
     deletePost(postId:string|null){
         return this.httpClient.delete<Post>(`${this.url}/${postId}/delete`,{withCredentials:true})
     }
+    like(postId:string|null){
+        return this.httpClient.put<Post>(`${this.url}/${postId}/like`,{},{withCredentials:true})
+    }
 }

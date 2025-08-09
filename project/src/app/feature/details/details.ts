@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../../shared/models/post.model';
 import { PostService } from '../../core/services/post.service';
@@ -10,33 +10,33 @@ import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validator
 
 @Component({
   selector: 'app-details',
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './details.html',
   styleUrl: './details.css'
 })
-export class Details implements OnInit{
-  post$:Observable<Post>
+export class Details implements OnInit {
+  post$: Observable<Post>
   private postService = inject(PostService)
   private route = inject(ActivatedRoute)
   private router = inject(Router)
-
-  editForm:FormGroup
+  isLiked = signal<boolean>(false)
+  editForm: FormGroup
 
   editMode = signal<boolean>(false)
 
   authService = inject(AuthService)
 
-  constructor(private formBuilder:FormBuilder){
-    
+  constructor(private formBuilder: FormBuilder) {
+
     this.post$ = this.postService.getDetailsPost(this.route.snapshot.paramMap.get('postId'))
     this.editForm = this.formBuilder.group({
-      title:['',[Validators.required]],
-      description:['',[Validators.required,Validators.minLength(10)]],
-      imageUrl:['']
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      imageUrl: ['']
     })
 
   }
-    ngOnInit(): void {
+  ngOnInit(): void {
     this.post$.subscribe((postData) => {
       if (postData) {
         this.editForm.patchValue({
@@ -47,55 +47,58 @@ export class Details implements OnInit{
       }
     });
   }
-  get title() :AbstractControl|null{
+  get title(): AbstractControl | null {
     return this.editForm.get('title')
   }
-  get description () :AbstractControl|null{
+  get description(): AbstractControl | null {
     return this.editForm.get('description')
   }
-  get imageUrl () :AbstractControl|null{
+  get imageUrl(): AbstractControl | null {
     return this.editForm.get('imageUrl')
   }
 
-  get isTitleInvalid():boolean{
-    if(this.title?.invalid && this.title?.touched){
+  get isTitleInvalid(): boolean {
+    if (this.title?.invalid && this.title?.touched) {
       return true
     }
     return false;
   }
-  get isDescriptionInvalid():boolean{
-    if((this.description?.touched || this.description?.dirty) && (this.description.invalid || this.description.errors?.['minlength'])){
+  get isDescriptionInvalid(): boolean {
+    if ((this.description?.touched || this.description?.dirty) && (this.description.invalid || this.description.errors?.['minlength'])) {
       return true
     }
     return false
   }
 
-  get titleErrorMessage ():string{
-    if(this.title?.touched && this.title?.invalid){
+  get titleErrorMessage(): string {
+    if (this.title?.touched && this.title?.invalid) {
       return "Title is reqired!";
     }
     return "";
   }
-  
-  get descriptionErrorMessage():string{
-    if(this.description?.dirty && this.description.errors?.['minlength']){
+
+  get descriptionErrorMessage(): string {
+    if (this.description?.dirty && this.description.errors?.['minlength']) {
       return "Description have at least 10 characters!"
     }
-    if(this.description?.touched){
+    if (this.description?.touched) {
       return "Description is reqired!"
     }
-    
+
     return ""
   }
-  editModeSwitch():void{
-    if(this.editMode()){
+
+
+
+  editModeSwitch(): void {
+    if (this.editMode()) {
       this.editMode.set(false)
-    }else{
+    } else {
       this.editMode.set(true)
     }
-    
+
   }
-  edit():void{
+  edit(): void {
 
     this.postService.editPost(
       this.title?.value,
@@ -103,16 +106,23 @@ export class Details implements OnInit{
       this.description?.value,
       this.route.snapshot.paramMap.get('postId')
     ).subscribe({
-      next:()=>{
+      next: () => {
         //this.router.navigate(['/home'])
         this.editMode.set(false)
       }
     })
   }
-  deletePost():void{
+  deletePost(): void {
     this.postService.deletePost(this.route.snapshot.paramMap.get('postId')).subscribe({
-      next:()=>{
+      next: () => {
         this.router.navigate(['/home'])
+      }
+    })
+  }
+  like(): void {
+    this.postService.like(this.route.snapshot.paramMap.get('postId')).subscribe({
+      next: () => {
+       this.isLiked.set(true)
       }
     })
   }

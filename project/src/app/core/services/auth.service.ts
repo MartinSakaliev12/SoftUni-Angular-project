@@ -13,15 +13,20 @@ export class AuthService {
 
     private _isLoggedIn = signal<boolean>(false)
     private _user = signal<User | null>(null)
+    private _userId = signal<string>('')
 
     public isLoggedIn = this._isLoggedIn.asReadonly()
     public user = this._user.asReadonly();
+    public userId = this._userId.asReadonly();
+    
     constructor() {
 
         const currentUser = localStorage.getItem('currentUser')
         if (currentUser) {
+            const currentUserParsed = JSON.parse(currentUser)
             this._user.set(JSON.parse(currentUser))
             this._isLoggedIn.set(true)
+            this._userId.set(currentUserParsed._id)
         }
     }
 
@@ -30,6 +35,7 @@ export class AuthService {
             tap(apiUser => {
                 this._user.set(apiUser);
                 this._isLoggedIn.set(true)
+                this._userId.set(apiUser._id)
                 localStorage.setItem('currentUser', JSON.stringify(this._user()))
             })
         )
@@ -43,6 +49,7 @@ export class AuthService {
             tap(apiUser => {
                 this._user.set(apiUser);
                 this._isLoggedIn.set(true);
+                this._userId.set(apiUser._id)
                 localStorage.setItem('currentUser', JSON.stringify(this._user()))
             }
             )
@@ -56,6 +63,7 @@ export class AuthService {
             localStorage.removeItem('currentUser')
             this._user.set(null)
             this._isLoggedIn.set(false)
+            this._userId.set('')
         }))
         //todo add to log out
     }

@@ -130,3 +130,6 @@ a:hover{
 .fa-heart{
   font-size: 1.3em;
 }
+.liked{
+  color: red;
+}

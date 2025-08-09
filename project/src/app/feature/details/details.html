@@ -9,7 +9,15 @@
             <div class="post-info">
                 <div class="header-action">
                     <div class="post-action">
-                        <a href=""><i class="fa-solid fa-heart"></i></a>
+
+                       @if(authService.isLoggedIn()){
+                            @if((post$ | async)?.likes?.includes(authService.userId())|| isLiked()){
+                                <a  class="liked"><i class="fa-solid fa-heart"></i></a>
+                            }@else {
+
+                                <a  (click)="like()"><i class="fa-solid fa-heart"></i></a>
+                            }
+                       }
                     </div>
                     <h2 class="post-title">{{(post$ | async)?.title}}</h2>
                 </div>

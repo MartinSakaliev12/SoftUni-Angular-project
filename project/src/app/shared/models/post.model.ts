@@ -5,5 +5,6 @@ export interface Post{
     title:string,
     imageUrl:string,
     description:string,
-    userId:User
+    userId:User,
+    likes:string[];
 }
