@@ -26,4 +26,7 @@ export class PostService {
     editPost(title:string,imageUrl:string,description:string,postId:string|null){
         return this.httpClient.put<Post>(`${this.url}/${postId}/edit`,{title,imageUrl,description},{withCredentials:true})
     }
+    deletePost(postId:string|null){
+        return this.httpClient.delete<Post>(`${this.url}/${postId}/delete`,{withCredentials:true})
+    }
 }

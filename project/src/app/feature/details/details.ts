@@ -109,4 +109,11 @@ export class Details implements OnInit{
       }
     })
   }
+  deletePost():void{
+    this.postService.deletePost(this.route.snapshot.paramMap.get('postId')).subscribe({
+      next:()=>{
+        this.router.navigate(['/home'])
+      }
+    })
+  }
 }

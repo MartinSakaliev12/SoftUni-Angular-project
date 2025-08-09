@@ -20,6 +20,7 @@
             </div>
             @if(authService.user()?._id === (post$ | async)?.userId?._id){
                 <button class="btn-edit-mode" (click)="editModeSwitch()">Eddit</button>
+                <button class="btn-edit-mode" (click)="deletePost()">Delete</button>
             }
         </div>
     }@else {
