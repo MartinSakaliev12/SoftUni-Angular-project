@@ -2,14 +2,19 @@
 
     <div class="post">
         <div class="post-header" >
-            <span ><img src="{{post?.userId?.imageUrl}}" class="profile-pic" routerLink="/{{post?.userId?._id}}/profile"> {{post?.userId?.username}}</span>
+            <span ><img src="{{post?.userId?.imageUrl}}" 
+                class="profile-pic" 
+                routerLink="/{{post?.userId?._id}}/profile"> 
+                <p routerLink="/{{post?.userId?._id}}/profile" class="username-para"> 
+                    {{post?.userId?.username}}
+                </p></span>
         </div>
         <img src="{{post?.imageUrl}}" class="post-pic" alt="Image url">
         <div class="post-action">
             <!-- <i class="fa-solid fa-heart"></i> -->
         </div>
-        <div class="post-caption" routerLink="/{{post?._id}}/details">
-            <strong>{{post?.title}}</strong> Click to see more...
+        <div class="post-caption" >
+            <strong>{{post?.title}}     </strong><p routerLink="/{{post?._id}}/details" class="see-more">Click to see more...</p>
         </div>
     </div>
 </a>

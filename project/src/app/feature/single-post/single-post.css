@@ -55,5 +55,20 @@
     height: 40px;
     border-radius: 100%;
     object-fit: cover;
+    cursor: pointer;
+}
+.username-para{
+    cursor: pointer;
+}
+.username-para:hover{
+    color:grey
+}
+.see-more{
+    cursor: pointer;
+    display: inline;
+    
+}
+.see-more:hover{
+    color: grey;
 }
 
