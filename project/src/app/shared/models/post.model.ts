@@ -6,5 +6,6 @@ export interface Post{
     imageUrl:string,
     description:string,
     userId:User,
-    likes:string[];
+    likes:string[],
+    created_at:Date
 }

@@ -11,9 +11,14 @@
                     <div class="post-action">
 
                        @if(authService.isLoggedIn()){
-                            @if((post$ | async)?.likes?.includes(authService.userId())|| isLiked()){
-                                <a  class="liked"><i class="fa-solid fa-heart"></i></a>
-                            }@else {
+                            @if((post$ | async)?.likes?.includes(authService.userId()) && (!isDisliked() && !isLiked())){
+                                <a  class="liked" (click)="disLike()"><i class="fa-solid fa-heart"></i></a>
+                            }@else if(isLiked()){
+                                <a  class="liked" (click)="disLike()"><i class="fa-solid fa-heart"></i></a>
+                            }@else if(isDisliked()){
+                                <a  (click)="like()"><i class="fa-solid fa-heart"></i></a>
+                            }
+                            @else {
 
                                 <a  (click)="like()"><i class="fa-solid fa-heart"></i></a>
                             }
@@ -24,7 +29,7 @@
                 <p class="post-description">
                     {{(post$ | async)?.description}}
                 </p>
-                <p class="post-author">Posted by <strong>{{(post$ | async)?.userId?.username}}</strong> 7 weeks ago (have to make a pipe)</p>
+                <p class="post-author">Posted by <strong>{{(post$ | async)?.userId?.username}}</strong> {{(post$|async)?.created_at|time}}</p>
             </div>
             @if(authService.user()?._id === (post$ | async)?.userId?._id){
                 <button class="btn-edit-mode" (click)="editModeSwitch()">Eddit</button>

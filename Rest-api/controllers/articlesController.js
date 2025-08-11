@@ -59,6 +59,20 @@ function like (req,res,next){
         })
         .catch(next);
 }
+function dislike(req, res, next) {
+    const articleId = req.params.articleId;
+    const { _id: userId } = req.user;
+
+    articleModel.findByIdAndUpdate(
+        { _id: articleId },
+        { $pull: { likes: userId } }, // remove userId from likes array
+        { new: true }
+    )
+    .then(updatedTheme => {
+        res.status(200).json(updatedTheme);
+    })
+    .catch(next);
+}
 //TODO create it
 // function edit(req,res,next){
 //     const themeId = req.params.themeId;
@@ -111,5 +125,6 @@ module.exports = {
     getArticle,
     like,
     edit,
-    deleteArticle
+    deleteArticle,
+    dislike
 }

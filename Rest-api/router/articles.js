@@ -10,6 +10,7 @@ router.get('/', articleControler.getAll)
 router.post('/',auth() ,articleControler.createArticle)
 router.get('/:articleId', articleControler.getArticle)
 router.put('/:articleId/like',auth(), articleControler.like)
+router.put('/:articleId/dislike',auth(), articleControler.dislike)
 router.put('/:articleId/edit',auth(),articleControler.edit)
 router.delete('/:articleId/delete',auth(),articleControler.deleteArticle)
 

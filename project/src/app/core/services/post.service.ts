@@ -32,4 +32,7 @@ export class PostService {
     like(postId:string|null){
         return this.httpClient.put<Post>(`${this.url}/${postId}/like`,{},{withCredentials:true})
     }
+    dislike(postId:string|null){
+        return this.httpClient.put<Post>(`${this.url}/${postId}/dislike`,{},{withCredentials:true})
+    }
 }

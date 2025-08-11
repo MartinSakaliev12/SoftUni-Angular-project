@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from "@angular/core";
     name: 'time'
 })
 export class TimeAgoPipe implements PipeTransform {
-    transform(value: string | Date): string {
+    transform(value: string | Date |undefined): string {
         if (!value){
             return '';
         }

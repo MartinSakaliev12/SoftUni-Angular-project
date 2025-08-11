@@ -7,10 +7,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TimeAgoPipe } from '../../shared/pipes/time-pipe';
 
 @Component({
   selector: 'app-details',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,TimeAgoPipe],
   templateUrl: './details.html',
   styleUrl: './details.css'
 })
@@ -20,6 +21,7 @@ export class Details implements OnInit {
   private route = inject(ActivatedRoute)
   private router = inject(Router)
   isLiked = signal<boolean>(false)
+  isDisliked = signal<boolean>(false)
   editForm: FormGroup
 
   editMode = signal<boolean>(false)
@@ -123,6 +125,15 @@ export class Details implements OnInit {
     this.postService.like(this.route.snapshot.paramMap.get('postId')).subscribe({
       next: () => {
        this.isLiked.set(true)
+       this.isDisliked.set(false)
+      }
+    })
+  }
+  disLike():void{
+    this.postService.dislike(this.route.snapshot.paramMap.get('postId')).subscribe({
+      next:()=>{
+        this.isDisliked.set(true)
+        this.isLiked.set(false)
       }
     })
   }
