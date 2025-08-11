@@ -6,6 +6,8 @@ import { Login } from './feature/auth/login/login';
 import { Create } from './feature/create/create';
 import { Details } from './feature/details/details';
 import { Profile } from './feature/profile/profile';
+import { guestGuardGuard } from './core/guards/guest-guard-guard';
+import { authGuardGuard } from './core/guards/auth-guard-guard';
 
 export const routes: Routes = [
     {
@@ -16,25 +18,31 @@ export const routes: Routes = [
     },
     {
         path:'home',
-        component:Home
+        component:Home,
+        
     },
     {
         path:'register',
-        component: Register
+        component: Register,
+        canMatch:[guestGuardGuard]
     },
     {
         path:'login',
-        component:Login
+        component:Login,
+        canMatch:[guestGuardGuard]        
     },
     {
         path:'createPost',
-        component:Create
+        component:Create,
+        canMatch:[authGuardGuard]
     },{
         path:':postId/details',
-        component:Details
+        component:Details,
+        
     },
     {
         path:':userId/profile',
-        component:Profile
+        component:Profile,
+        canMatch:[authGuardGuard]
     }
 ];
