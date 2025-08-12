@@ -54,6 +54,7 @@
             }
             <input type="text" placeholder="Add something for you!" formControlName="biography" id="biography">
             <button type="submit" [disabled]="editProfileForm.invalid">Edit your profile</button>
+            <button type="submit" (click)="changeMode()">Cancel</button>
 
         </form>
     </div>

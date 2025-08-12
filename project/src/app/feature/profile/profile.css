@@ -151,6 +151,7 @@ input::placeholder {
 }
 
 button {
+
   background-color: #3897f0;
   border: none;
   padding: 12px;
@@ -158,6 +159,7 @@ button {
   color: white;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
   transition: background 0.3s;
 }
 

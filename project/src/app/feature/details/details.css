@@ -123,12 +123,13 @@ a{
   color: white;
   
 }
-a:hover{
-  color:red
-}
+/* a:hover{
+  color:red */
+/* } */
 
 .fa-heart{
   font-size: 1.3em;
+  cursor: pointer;
 }
 .liked{
   color: red;
