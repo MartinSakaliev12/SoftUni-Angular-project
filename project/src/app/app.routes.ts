@@ -18,31 +18,31 @@ export const routes: Routes = [
     },
     {
         path:'home',
-        component:Home,
+        loadComponent: () => import('./feature/home/home').then(c => c.Home)
         
     },
     {
         path:'register',
-        component: Register,
+        loadComponent: () => import('./feature/auth/register/register').then(c => c.Register),
         canMatch:[guestGuardGuard]
     },
     {
         path:'login',
-        component:Login,
+        loadComponent: () => import('./feature/auth/login/login').then(c => c.Login),
         canMatch:[guestGuardGuard]        
     },
     {
         path:'createPost',
-        component:Create,
+        loadComponent: () => import('./feature/create/create').then(c => c.Create),
         canMatch:[authGuardGuard]
     },{
         path:':postId/details',
-        component:Details,
+        loadComponent: () => import('./feature/details/details').then(c => c.Details),
         
     },
     {
         path:':userId/profile',
-        component:Profile,
+        loadComponent: () => import('./feature/profile/profile').then(c => c.Profile),
         canMatch:[authGuardGuard]
     }
 ];
