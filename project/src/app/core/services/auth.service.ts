@@ -18,7 +18,7 @@ export class AuthService {
     public isLoggedIn = this._isLoggedIn.asReadonly()
     public user = this._user.asReadonly();
     public userId = this._userId.asReadonly();
-    
+
     constructor() {
 
         const currentUser = localStorage.getItem('currentUser')
@@ -30,8 +30,8 @@ export class AuthService {
         }
     }
 
-    register(biography: string, email: string, username: string, password: string,imageUrl:string): Observable<User> {
-        return this.httpClient.post<User>(`${this.url}/register`, { biography, email, username,imageUrl, password }, { withCredentials: true }).pipe(
+    register(biography: string, email: string, username: string, password: string, imageUrl: string): Observable<User> {
+        return this.httpClient.post<User>(`${this.url}/register`, { biography, email, username, imageUrl, password }, { withCredentials: true }).pipe(
             tap(apiUser => {
                 this._user.set(apiUser);
                 this._isLoggedIn.set(true)
@@ -43,7 +43,7 @@ export class AuthService {
     }
 
     login(email: string, password: string): Observable<User> {
-        return this.httpClient.post<User>(`${this.url}/login`, { email, password },{
+        return this.httpClient.post<User>(`${this.url}/login`, { email, password }, {
             withCredentials: true,
         }).pipe(
             tap(apiUser => {
@@ -66,6 +66,11 @@ export class AuthService {
             this._userId.set('')
         }))
         //todo add to log out
+    }
+    editProfile(biography: string, username: string, imageUrl: string, email: string) {
+        return this.httpClient.put<User>(`http://localhost:3000/api/users/profile`, { biography, username, imageUrl, email },{withCredentials:true}).pipe(
+            tap((user) => {this._user.set(user)})
+        )
     }
 
 }

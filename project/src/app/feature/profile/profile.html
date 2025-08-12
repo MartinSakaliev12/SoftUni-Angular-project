@@ -1,34 +1,61 @@
 <div class="profile-container">
-    <header class="profile-header">
-        <img src="{{(profile$|async)?.imageUrl}}" alt="Аватар" class="avatar">
+    @if(!isEditMode()){
 
-        <div class="profile-info">
-            <div class="top-row">
-                <h2 class="username">{{(profile$|async)?.username}}</h2>
-                <button class="edit-btn">Редактирай профила</button>
-            </div>
-            <!-- 
-            <div class="stats">
-                <span><strong>34</strong> публикации</span>
-                <span><strong>123</strong> последователи</span>
-                <span><strong>98</strong> следва</span>
-            </div> -->
-
-            <p class="bio">{{(profile$|async)?.biography}}</p>
-        </div>
-    </header>
-    <h1 class="posts-username-header">{{(profile$|async)?.username}}'s posts</h1>
-    <div class="posts-container">
-        @for(post of (profile$|async)?.articles;track post._id){
-
-        <div class="post">
-            <a routerLink="/{{post._id}}/details">
-                <img src="{{post.imageUrl}}" alt="Post 1" />
-                <p class="title-para"><strong>{{post.title}}</strong></p>
+        <header class="profile-header">
+            <img src="{{(profile$|async)?.imageUrl}}" alt="Аватар" class="avatar">
+            
+            <div class="profile-info">
+                <div class="top-row">
+                    <h2 class="username">{{(profile$|async)?.username}}</h2>
+                    @if(authService.userId() == route.snapshot.paramMap.get('userId')){
+                        
+                        <button class="edit-btn" (click)="changeMode()">Edit profile</button>
+                    }
+                </div>
+                <!-- 
+                    <div class="stats">
+                        <span><strong>34</strong> публикации</span>
+                        <span><strong>123</strong> последователи</span>
+                        <span><strong>98</strong> следва</span>
+                    </div> -->
+                    
+                    <p class="bio">{{(profile$|async)?.biography}}</p>
+                </div>
+            </header>
+            <h1 class="posts-username-header">{{(profile$|async)?.username}}'s posts</h1>
+            <div class="posts-container">
+                @for(post of (profile$|async)?.articles;track post._id){
+                    
+                    <div class="post">
+                        <a routerLink="/{{post._id}}/details">
+                            <img src="{{post.imageUrl}}" alt="Post 1" />
+                            <p class="title-para"><strong>{{post.title}}</strong></p>
+                            
+                        </a>
+                    </div>
+                }
                 
-            </a>
-        </div>
-        }
+            </div>
+        }@else{
+            <div class="register-container">
+        <form class="register-form" [formGroup]="editProfileForm" (ngSubmit)="editProfile()">
+            <input type="text" placeholder="Username" formControlName="username" id="username" >
+            @if(isUsernameInvalid){
+                <p class="error"> {{usernameErrorMessage}}</p>
+            }
+            <input type="email" placeholder="Email" formControlName="email" id="email" >
+            @if(isEmailInvalid){
+                <p class="error"> {{emailErrorMessage}}</p>
+            }
+            
+            <input type="text" placeholder="imageUrl" formControlName="imageUrl" id="imageUrl" >
+            @if(isImageUrlInvalid){
+                <p class="error">{{imageUrlErrorMessage}}</p>
+            }
+            <input type="text" placeholder="Add something for you!" formControlName="biography" id="biography">
+            <button type="submit" [disabled]="editProfileForm.invalid">Edit your profile</button>
 
+        </form>
     </div>
+        }
 </div>
