@@ -13,4 +13,5 @@ export class ProfileService{
     getProfile(userId:string|null){
         return this.httpClient.get<User>(`${this.url}/${userId}/profile`)
     }
+
 }
