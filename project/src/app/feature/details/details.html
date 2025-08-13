@@ -2,9 +2,12 @@
     @if(!editMode()){
 
         <div class="details-container">
-            <div class="post-image">
-                <img src="{{(post$ | async)?.imageUrl}}" alt="Post image">
-            </div>
+            @if(!!(post$ | async)?.imageUrl){
+
+                <div class="post-image">
+                    <img src="{{(post$ | async)?.imageUrl}}" alt="Post image">
+                </div>
+            }
             
             <div class="post-info">
                 <div class="header-action">
@@ -29,7 +32,7 @@
                 <p class="post-description">
                     {{(post$ | async)?.description}}
                 </p>
-                <p class="post-author">Posted by <strong>{{(post$ | async)?.userId?.username}}</strong> {{(post$|async)?.created_at|time}}</p>
+                <p class="post-author">Posted by <strong class="author-para" routerLink="/{{(post$ | async)?.userId?._id}}/profile">{{(post$ | async)?.userId?.username}}</strong> {{(post$|async)?.created_at|time}}</p>
             </div>
             @if(authService.user()?._id === (post$ | async)?.userId?._id){
                 <button class="btn-edit-mode" (click)="editModeSwitch()">Eddit</button>

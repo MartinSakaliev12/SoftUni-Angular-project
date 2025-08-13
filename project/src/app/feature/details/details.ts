@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Post } from '../../shared/models/post.model';
 import { PostService } from '../../core/services/post.service';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { TimeAgoPipe } from '../../shared/pipes/time-pipe';
 
 @Component({
   selector: 'app-details',
-  imports: [CommonModule, ReactiveFormsModule,TimeAgoPipe],
+  imports: [CommonModule, ReactiveFormsModule,TimeAgoPipe,RouterModule],
   templateUrl: './details.html',
   styleUrl: './details.css'
 })

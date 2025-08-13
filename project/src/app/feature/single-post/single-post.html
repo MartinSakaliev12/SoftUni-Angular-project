@@ -1,20 +1,29 @@
 <a class="post">
 
     <div class="post">
-        <div class="post-header" >
-            <span ><img src="{{post?.userId?.imageUrl}}" 
-                class="profile-pic" 
-                routerLink="/{{post?.userId?._id}}/profile"> 
-                <p routerLink="/{{post?.userId?._id}}/profile" class="username-para"> 
+        <div class="post-header">
+            <span>@if(!!post?.userId?.imageUrl){
+                <img src="{{post?.userId?.imageUrl}}" class="profile-pic" routerLink="/{{post?.userId?._id}}/profile">
+                }@else {
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="profile-pic" routerLink="/{{post?.userId?._id}}/profile">
+
+                }
+
+                <p routerLink="/{{post?.userId?._id}}/profile" class="username-para">
                     {{post?.userId?.username}}
-                </p></span>
+                </p>
+            </span>
         </div>
+        @if(!!post?.imageUrl){
+
         <img src="{{post?.imageUrl}}" class="post-pic" alt="Image url">
+        }
         <div class="post-action">
             <!-- <i class="fa-solid fa-heart"></i> -->
         </div>
-        <div class="post-caption" >
-            <strong>{{post?.title}}     </strong><p routerLink="/{{post?._id}}/details" class="see-more">Click to see more...</p>
+        <div class="post-caption">
+            <strong>{{post?.title}} </strong>
+            <p routerLink="/{{post?._id}}/details" class="see-more">Click to see more...</p>
         </div>
     </div>
 </a>

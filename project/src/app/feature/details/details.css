@@ -134,3 +134,9 @@ a{
 .liked{
   color: red;
 }
+.author-para{
+  cursor: pointer;
+}
+.author-para:hover{
+  color:white
+}
