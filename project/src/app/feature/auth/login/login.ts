@@ -26,14 +26,14 @@ export class Login {
     return false
   }
 
-  get isPasswordInvalid (){
+  get isPasswordInvalid ():boolean{
     if(this.loginForm.get('password')?.touched && this.loginForm.get('password')?.invalid){
       return true
     }
     return false
   }
 
-  login(){
+  login():void{
     const email = this.loginForm.get('email')?.value
     const password = this.loginForm.get('password')?.value
     this.authService.login(email,password).subscribe({

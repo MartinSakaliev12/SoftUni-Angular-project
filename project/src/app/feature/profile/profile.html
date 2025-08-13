@@ -33,7 +33,10 @@
                     
                     <div class="post">
                         <a routerLink="/{{post._id}}/details">
-                            <img src="{{post.imageUrl}}" alt="Post 1" />
+                            @if(!!post.imageUrl){
+
+                                <img src="{{post.imageUrl}}" alt="Post 1" />
+                            }
                             <p class="title-para"><strong>{{post.title}}</strong></p>
                             
                         </a>
